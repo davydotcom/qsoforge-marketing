@@ -1,7 +1,7 @@
 ---
 user: david-estes
-updated: 2026-05-18T23:07:24Z
-repo: qso-marketing
+updated: 2026-05-19T01:11:13Z
+repo: davydotcom/qsoforge-marketing
 ---
 
 # david-estes's handoff
