@@ -24,11 +24,11 @@ The implementation spec lives at [`.hero/planning/features/marketing-site-v1/spe
 
 ## Updating the published mock
 
-After editing `.hero/mocks/marketing-site-v1/index.html`, refresh the published copy:
+After editing files under `.hero/mocks/marketing-site-v1/`, mirror them into `docs/`:
 
 ```sh
-cp .hero/mocks/marketing-site-v1/index.html docs/index.html
-git add docs/index.html
+cp .hero/mocks/marketing-site-v1/* docs/
+git add docs/
 git commit -m "publish: refresh mock"
 git push
 ```
