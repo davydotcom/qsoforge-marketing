@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "hero": {
+      "command": "/home/destes/go/bin/hero",
+      "args": [
+        "mcp"
+      ]
+    }
+  }
+}
