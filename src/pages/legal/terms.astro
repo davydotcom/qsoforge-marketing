@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+---
+
+<BaseLayout
+  title="Terms of service — QSO Forge"
+  description="Terms of service for QSO Forge."
+  path="/legal/terms"
+>
+  <Hero eyebrow="Legal" title="Terms of service" />
+
+  <section class="mx-auto max-w-3xl px-6 pb-16">
+    <div
+      class="mb-8 rounded-md border border-[color:var(--color-warning)] bg-[color:var(--color-warning)]/10 px-4 py-3 text-sm text-[color:var(--color-warning)]"
+    >
+      <strong>Draft.</strong> This page is placeholder text pending legal
+      review. Do not rely on it as the actual terms of service.
+    </div>
+
+    <div class="text-text-muted">
+      <h2 class="mt-0 text-text">License</h2>
+      <p>
+        Placeholder. Damascus is licensed, not sold. A purchased license
+        grants a perpetual, non-exclusive right to use Damascus on any
+        machine you personally operate. Resale, redistribution, and
+        reverse engineering for redistribution are not permitted.
+      </p>
+
+      <h2 class="mt-6 text-text">Evaluation</h2>
+      <p>
+        Placeholder. Damascus includes a 30-day evaluation period at full
+        capability. After 30 days, the app requires a valid license
+        bundle to continue.
+      </p>
+
+      <h2 class="mt-6 text-text">Refunds</h2>
+      <p>
+        Placeholder. Because Damascus offers a 30-day full-feature
+        evaluation before purchase, refunds are generally not provided.
+        Exceptions handled case by case — email <a
+          href="mailto:support@qsoforge.com">support@qsoforge.com</a
+        >.
+      </p>
+
+      <h2 class="mt-6 text-text">Warranty disclaimer</h2>
+      <p>
+        Placeholder. The software is provided "as is", without warranty
+        of any kind. QSO Forge is not liable for missed contacts, missed
+        contests, or any consequence of using the software in your
+        operating workflow.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,83 @@
+---
+interface Props {
+  productName: string;
+}
+
+const { productName } = Astro.props;
+const endpoint = import.meta.env.PUBLIC_BUTTONDOWN_ENDPOINT ?? "";
+const formId = `coming-soon-${productName.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+<form
+  id={formId}
+  class="flex w-full max-w-md flex-col gap-3"
+  data-endpoint={endpoint}
+  data-product={productName}
+>
+  <label class="flex flex-col gap-2 text-sm">
+    <span class="text-text-muted">
+      Notify me when {productName} ships
+    </span>
+    <input
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="you@callsign.example"
+      class="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] px-4 py-3 text-text placeholder:text-text-muted focus:border-[color:var(--color-accent)] focus:outline-none"
+    />
+  </label>
+  <button
+    type="submit"
+    class="inline-flex items-center justify-center rounded-md bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-[color:var(--color-surface-0)] transition-colors hover:bg-[color:var(--color-accent)]/90"
+  >
+    Notify me
+  </button>
+  <p
+    class="hidden text-sm text-[color:var(--color-success)]"
+    data-state="success"
+  >
+    Thanks — you're on the list.
+  </p>
+  <p
+    class="hidden text-sm text-[color:var(--color-error)]"
+    data-state="error"
+  >
+    Something went wrong. Try again in a moment.
+  </p>
+</form>
+
+<script is:inline define:vars={{ formId }}>
+  const form = document.getElementById(formId);
+  if (form) {
+    const success = form.querySelector('[data-state="success"]');
+    const error = form.querySelector('[data-state="error"]');
+    const endpoint = form.dataset.endpoint;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      success.classList.add("hidden");
+      error.classList.add("hidden");
+
+      if (!endpoint) {
+        error.textContent =
+          "Signup endpoint is not configured yet — try again later.";
+        error.classList.remove("hidden");
+        return;
+      }
+
+      const data = new FormData(form);
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          body: data,
+        });
+        if (!response.ok) throw new Error(String(response.status));
+        form.reset();
+        success.classList.remove("hidden");
+      } catch (err) {
+        error.classList.remove("hidden");
+      }
+    });
+  }
+</script>

@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ComingSoonForm from "../components/ComingSoonForm.astro";
+---
+
+<BaseLayout
+  title="Tensile — a modern public repeater directory from QSO Forge"
+  description="Tensile is a modern replacement for the public repeater directory. Open data, fast search, current. Coming soon from QSO Forge."
+  path="/tensile"
+  ogImage="/og/tensile.png"
+>
+  <Hero
+    eyebrow="Tensile · Coming soon"
+    title="A repeater directory worth using."
+    subtitle="Open data. Fast search. Current. We're rebuilding the repeater directory the way it should have worked all along."
+  />
+
+  <section class="mx-auto max-w-2xl px-6 pb-20">
+    <ComingSoonForm productName="Tensile" />
+  </section>
+</BaseLayout>

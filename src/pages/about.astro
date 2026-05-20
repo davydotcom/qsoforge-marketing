@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+---
+
+<BaseLayout
+  title="About QSO Forge"
+  description="QSO Forge builds engineering-quality amateur radio software. Cross-platform from day one. Offline-first because the field doesn't have a hotspot."
+  path="/about"
+  ogImage="/og/about.png"
+>
+  <Hero
+    eyebrow="About"
+    title="Software the field can rely on."
+    subtitle="QSO Forge builds amateur radio software for operators who care about how their tools behave. Cross-platform from day one. Offline-first because the field doesn't have a hotspot. Built in the open enough to earn trust, closed enough to fund the work."
+  />
+
+  <section class="mx-auto max-w-3xl px-6 py-12">
+    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
+      Principles
+    </h2>
+    <div class="flex flex-col gap-6">
+      <article
+        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
+      >
+        <h3 class="text-base font-semibold text-text">
+          Engineering quality first
+        </h3>
+        <p class="mt-2 text-text-muted">
+          The shipped app is the spec. We write things down, we test what we
+          build, and we sweat the workflows that operators actually use under
+          contest pressure.
+        </p>
+      </article>
+      <article
+        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
+      >
+        <h3 class="text-base font-semibold text-text">
+          Cross-platform parity
+        </h3>
+        <p class="mt-2 text-text-muted">
+          Windows and Linux ship together on day one. macOS lands when it
+          earns its place. Whatever surface you use, the same data, the same
+          keybindings, the same answers.
+        </p>
+      </article>
+      <article
+        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
+      >
+        <h3 class="text-base font-semibold text-text">Offline-first</h3>
+        <p class="mt-2 text-text-muted">
+          DXpeditions, POTA in a canyon, contest stations in remote cabins —
+          if it needs a hotspot to work, it's not built for hams. The license,
+          the logbook, the rig control: all local.
+        </p>
+      </article>
+      <article
+        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
+      >
+        <h3 class="text-base font-semibold text-text">Built by hams</h3>
+        <p class="mt-2 text-text-muted">
+          We're operators. We use what we ship. If a feature feels wrong on
+          the air, it doesn't make it into the next release.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-12">
+    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
+      Founder
+    </h2>
+    <div
+      class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-6"
+    >
+      <p class="text-text-muted">
+        Founder bio placeholder — replace before launch.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

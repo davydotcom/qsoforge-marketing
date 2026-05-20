@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qsoforge.com/sitemap-index.xml

@@ -1,0 +1,78 @@
+---
+const formId = "recover-license-form";
+---
+
+<form id={formId} class="flex w-full max-w-md flex-col gap-3">
+  <label class="flex flex-col gap-2 text-sm">
+    <span class="text-text-muted">Email used at checkout</span>
+    <input
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="you@callsign.example"
+      class="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] px-4 py-3 text-text placeholder:text-text-muted focus:border-[color:var(--color-accent)] focus:outline-none"
+    />
+  </label>
+  <button
+    type="submit"
+    class="inline-flex items-center justify-center rounded-md bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-[color:var(--color-surface-0)] transition-colors hover:bg-[color:var(--color-accent)]/90"
+  >
+    Resend my license
+  </button>
+  <p
+    class="hidden text-sm text-[color:var(--color-success)]"
+    data-state="success"
+  >
+    If we have a record of that email, we've sent your license. Check your inbox in the next few minutes.
+  </p>
+  <p
+    class="hidden text-sm text-[color:var(--color-error)]"
+    data-state="error"
+    data-state-text="Something went wrong. Try again in a moment."
+  >
+    Something went wrong. Try again in a moment.
+  </p>
+  <p
+    class="hidden text-sm text-text-muted"
+    data-state="rate-limited"
+  >
+    Already sent recently. Please wait an hour before trying again.
+  </p>
+</form>
+
+<script is:inline define:vars={{ formId }}>
+  const form = document.getElementById(formId);
+  if (form) {
+    const success = form.querySelector('[data-state="success"]');
+    const error = form.querySelector('[data-state="error"]');
+    const rateLimited = form.querySelector('[data-state="rate-limited"]');
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      success.classList.add("hidden");
+      error.classList.add("hidden");
+      rateLimited.classList.add("hidden");
+
+      const formData = new FormData(form);
+      const email = formData.get("email");
+
+      try {
+        const response = await fetch("/api/recover-license", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        if (response.status === 429) {
+          rateLimited.classList.remove("hidden");
+          return;
+        }
+        if (!response.ok) throw new Error(String(response.status));
+        form.reset();
+        success.classList.remove("hidden");
+      } catch (err) {
+        error.classList.remove("hidden");
+      }
+    });
+  }
+</script>

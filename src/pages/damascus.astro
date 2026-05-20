@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import PlatformBadge from "../components/PlatformBadge.astro";
+import DownloadButton from "../components/DownloadButton.astro";
+import BuyButton from "../components/BuyButton.astro";
+import CodeBlock from "../components/CodeBlock.astro";
+
+const features = [
+  {
+    title: "Daily logging",
+    body: "Fast keyboard-driven entry, ADIF I/O, multiple logbooks, operator switching. The boring stuff, done right.",
+  },
+  {
+    title: "Contesting",
+    body: "ARRL FD, WFD, NAQP, state QSO parties. Cabrillo export. DUPE detection. Adaptive entry strip per contest.",
+  },
+  {
+    title: "POTA",
+    body: "Park lookups, activation tracking, P2P, stats. POTA spots, DX spots, map view.",
+  },
+  {
+    title: "Multi-station field ops",
+    body: "Two laptops in a tent on Field Day, syncing logs peer-to-peer over the LAN. No cloud, no internet required.",
+  },
+  {
+    title: "WSJT-X & rig control",
+    body: "Hamlib-backed rig control, WSJT-X integration for FT8/FT4, frequency and mode autofill.",
+  },
+  {
+    title: "LoTW & eQSL",
+    body: "Sign, upload, fetch confirmations. The pipeline you'd build yourself if you had the time.",
+  },
+  {
+    title: "Lookup providers",
+    body: "QRZ, HamQTH, callbook lookups with credential management that doesn't leak your password.",
+  },
+  {
+    title: "First-class TUI",
+    body: "Full ratatui TUI alongside the GUI. Same data, same keys, same workflows. SSH into your shack PC and just log.",
+  },
+  {
+    title: "Cross-platform parity",
+    body: "Windows, Linux (.deb / .rpm / .AppImage / Arch). macOS planned. Built on Rust + Slint.",
+  },
+];
+
+const installSnippets = [
+  {
+    label: "Debian / Ubuntu",
+    body: "sudo dpkg -i damascus_<version>_amd64.deb",
+  },
+  {
+    label: "Fedora / RHEL",
+    body: "sudo rpm -i damascus-<version>.x86_64.rpm",
+  },
+  {
+    label: "Arch",
+    body: "sudo pacman -U damascus-<version>-x86_64.pkg.tar.zst",
+  },
+  {
+    label: "AppImage (any Linux)",
+    body: "chmod +x damascus-<version>.AppImage && ./damascus-<version>.AppImage",
+  },
+  {
+    label: "Windows",
+    body: "Double-click the .msi and follow the installer.",
+  },
+];
+---
+
+<BaseLayout
+  title="Damascus — amateur radio logging from QSO Forge"
+  description="Damascus is a fast, cross-platform amateur radio logging app for daily QSOs, contests, POTA activations, and multi-station P2P field ops."
+  path="/damascus"
+  ogImage="/og/damascus.png"
+>
+  <Hero
+    eyebrow="Damascus"
+    title="Logging that keeps up with the operator."
+    subtitle="A serious cross-platform logging app for daily QSOs, contests, POTA, and field ops. Free 30-day evaluation — full features, no signup. License unlocks beyond evaluation."
+  >
+    <DownloadButton slot="cta" variant="primary" />
+    <BuyButton slot="cta" variant="secondary" />
+  </Hero>
+
+  <section class="mx-auto max-w-5xl px-6 py-8">
+    <div class="flex flex-wrap gap-3">
+      <PlatformBadge platform="windows" status="available" />
+      <PlatformBadge platform="linux" status="available" />
+      <PlatformBadge platform="macos" status="planned" />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
+      What's in the box
+    </h2>
+    <FeatureGrid columns={3}>
+      {
+        features.map((feature) => (
+          <FeatureCard title={feature.title} body={feature.body} />
+        ))
+      }
+    </FeatureGrid>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-12">
+    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
+      Install
+    </h2>
+    <div class="flex flex-col gap-4">
+      {
+        installSnippets.map((snippet) => (
+          <CodeBlock label={snippet.label}>{snippet.body}</CodeBlock>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-16 text-center">
+    <h2 class="text-2xl font-semibold tracking-tight">Try it free for 30 days</h2>
+    <p class="mt-4 text-text-muted">
+      Damascus enters Evaluation mode on first launch with the full feature set
+      for 30 days. No signup. No email. No clicks. Open the app and start
+      logging.
+    </p>
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <DownloadButton variant="primary" />
+      <BuyButton variant="secondary" />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  variant?: "primary" | "secondary" | "compact";
+  href?: string;
+  label?: string;
+  showTier?: boolean;
+}
+
+const {
+  variant = "primary",
+  href = import.meta.env.PUBLIC_LS_DAMASCUS_CHECKOUT_URL ?? "/pricing",
+  label,
+  showTier = variant !== "compact",
+} = Astro.props;
+
+const price = import.meta.env.PUBLIC_DAMASCUS_PRICE_USD ?? "25";
+const tierLabel = "founder pricing";
+const resolvedLabel = label ?? (variant === "compact" ? `Buy — $${price}` : `Buy license — $${price}`);
+
+const base = "inline-flex items-center justify-center font-medium rounded-md transition-colors no-underline";
+const variantClass = {
+  primary:
+    "px-5 py-3 text-base bg-[color:var(--color-accent)] text-[color:var(--color-surface-0)] hover:bg-[color:var(--color-accent)]/90",
+  secondary:
+    "px-5 py-3 text-base border border-[color:var(--color-accent)] text-[color:var(--color-accent)] bg-transparent hover:bg-[color:var(--color-accent)]/10",
+  compact:
+    "px-3 py-1.5 text-sm bg-[color:var(--color-accent)] text-[color:var(--color-surface-0)] hover:bg-[color:var(--color-accent)]/90",
+}[variant];
+---
+
+<a href={href} class={`${base} ${variantClass}`}>
+  <span>{resolvedLabel}</span>
+  {
+    showTier && (
+      <span class="ml-2 text-xs font-normal opacity-80">· {tierLabel}</span>
+    )
+  }
+</a>

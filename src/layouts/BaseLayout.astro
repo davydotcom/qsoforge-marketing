@@ -1,0 +1,52 @@
+---
+import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  path?: string;
+  chrome?: boolean;
+}
+
+const {
+  title,
+  description = "QSO Forge — engineering-quality amateur radio software.",
+  ogImage = "/og/home.png",
+  path = "/",
+  chrome = true,
+} = Astro.props;
+
+const canonicalUrl = new URL(path, Astro.site).toString();
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+  </head>
+  <body class="min-h-screen bg-surface-0 text-text">
+    {chrome && <SiteHeader />}
+    <slot />
+    {chrome && <SiteFooter />}
+  </body>
+</html>

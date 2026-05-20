@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+---
+
+<BaseLayout
+  title="Privacy policy — QSO Forge"
+  description="Privacy policy for QSO Forge."
+  path="/legal/privacy"
+>
+  <Hero eyebrow="Legal" title="Privacy policy" />
+
+  <section class="mx-auto max-w-3xl px-6 pb-16">
+    <div
+      class="mb-8 rounded-md border border-[color:var(--color-warning)] bg-[color:var(--color-warning)]/10 px-4 py-3 text-sm text-[color:var(--color-warning)]"
+    >
+      <strong>Draft.</strong> This page is placeholder text pending legal
+      review. Do not rely on it as the actual privacy policy.
+    </div>
+
+    <div class="prose prose-invert max-w-none text-text-muted">
+      <h2 class="mt-0 text-text">What we collect</h2>
+      <p>
+        Placeholder. The site uses Cloudflare Web Analytics (cookieless,
+        no personal data). Marketing-list signups (Tensile, Carbon) go to
+        Buttondown — see Buttondown's privacy policy. Damascus license
+        purchases are processed by Lemon Squeezy as merchant of record;
+        QSO Forge receives only the email address you provide at checkout
+        and a hashed customer identifier.
+      </p>
+
+      <h2 class="text-text">How we use it</h2>
+      <p>
+        Placeholder. Email addresses are used only to deliver your
+        Damascus license bundle, recover it on request, and notify you of
+        critical security or licensing changes. No marketing email
+        without explicit opt-in.
+      </p>
+
+      <h2 class="text-text">Contact</h2>
+      <p>
+        Placeholder. Privacy questions: <a href="mailto:privacy@qsoforge.com"
+          >privacy@qsoforge.com</a
+        >.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

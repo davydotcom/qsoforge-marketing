@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ComingSoonForm from "../components/ComingSoonForm.astro";
+---
+
+<BaseLayout
+  title="Carbon — browser-based SDR from QSO Forge"
+  description="Carbon is a browser-based software-defined radio for QSO Forge. Tune, watch the waterfall, work the band — from anywhere. Coming soon."
+  path="/carbon"
+  ogImage="/og/carbon.png"
+>
+  <Hero
+    eyebrow="Carbon · Coming soon"
+    title="Your radio. In your browser."
+    subtitle="Tune, watch the waterfall, work the band — from any device with a browser. Carbon brings WebSDR-style remote operation into the QSO Forge ecosystem."
+  />
+
+  <section class="mx-auto max-w-2xl px-6 pb-20">
+    <ComingSoonForm productName="Carbon" />
+  </section>
+</BaseLayout>

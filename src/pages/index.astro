@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ProductCard from "../components/ProductCard.astro";
+import DownloadButton from "../components/DownloadButton.astro";
+import BuyButton from "../components/BuyButton.astro";
+
+const products = [
+  {
+    name: "Damascus",
+    tagline:
+      "Fast, cross-platform amateur radio logging. Daily QSOs, contesting, POTA, multi-station P2P field ops.",
+    status: "available" as const,
+    href: "/damascus",
+    icon: "Da",
+  },
+  {
+    name: "Tensile",
+    tagline:
+      "A modern replacement for the public repeater directory. Open data, fast search, current.",
+    status: "coming-soon" as const,
+    href: "/tensile",
+    icon: "Te",
+  },
+  {
+    name: "Carbon",
+    tagline:
+      "Browser-based SDR for QSO Forge. Tune, watch the waterfall, work the band — from anywhere.",
+    status: "coming-soon" as const,
+    href: "/carbon",
+    icon: "Ca",
+  },
+];
+---
+
+<BaseLayout
+  title="QSO Forge — engineering-quality amateur radio software"
+  description="QSO Forge builds serious amateur radio software, starting with Damascus — a fast, cross-platform logging app for daily ops, contests, and POTA."
+  path="/"
+>
+  <Hero
+    eyebrow="QSO Forge"
+    title="Engineering-quality software for amateur radio."
+    subtitle="We build fast, cross-platform tools that respect the operator's time and the operator's bandwidth. Starting with Damascus — a serious logging app for daily QSOs, contests, and POTA."
+  >
+    <DownloadButton slot="cta" variant="primary" />
+    <BuyButton slot="cta" variant="secondary" />
+  </Hero>
+
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
+      The product line
+    </h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      {
+        products.map((product) => (
+          <ProductCard
+            name={product.name}
+            tagline={product.tagline}
+            status={product.status}
+            href={product.href}
+            icon={product.icon}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-16 text-center">
+    <p class="text-lg text-text-muted">
+      Built by hams for hams. Cross-platform from day one. Offline-first
+      because the field doesn't have a hotspot.
+    </p>
+  </section>
+</BaseLayout>

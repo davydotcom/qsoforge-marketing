@@ -1,0 +1,33 @@
+---
+interface Props {
+  platform: "windows" | "linux" | "macos";
+  status: "available" | "planned";
+}
+
+const { platform, status } = Astro.props;
+
+const labels: Record<Props["platform"], string> = {
+  windows: "Windows",
+  linux: "Linux",
+  macos: "macOS",
+};
+
+const isAvailable = status === "available";
+const dotClass = isAvailable
+  ? "bg-[color:var(--color-accent-alt)]"
+  : "bg-[color:var(--color-border)]";
+const labelClass = isAvailable ? "text-text" : "text-text-muted";
+const statusLabel = isAvailable ? "" : "planned";
+---
+
+<span
+  class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] px-3 py-1.5 text-sm"
+>
+  <span class={`inline-block h-2 w-2 rounded-full ${dotClass}`} aria-hidden="true"></span>
+  <span class={labelClass}>{labels[platform]}</span>
+  {
+    statusLabel && (
+      <span class="text-xs text-text-muted">· {statusLabel}</span>
+    )
+  }
+</span>

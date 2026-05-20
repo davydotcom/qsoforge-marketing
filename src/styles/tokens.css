@@ -1,0 +1,39 @@
+/*
+ * Design tokens. Mirrors crates/ui/ui/theme.slint in the qso-forge repo.
+ * Keep these values in sync — `tokens.css` is the synchronization point
+ * for the marketing site and Damascus app palettes.
+ *
+ * Tailwind v4 picks up everything in @theme as both CSS custom properties
+ * (e.g. var(--color-surface-0)) and utility classes (e.g. bg-surface-0).
+ */
+
+@theme {
+  /* Surfaces (layered dark background) */
+  --color-surface-0: #0a0a0a;
+  --color-surface-1: #141414;
+  --color-surface-2: #1c1c1c;
+
+  /* Text */
+  --color-text: #ffffff;
+  --color-text-muted: #b8b8b8;
+
+  /* Accents */
+  --color-accent: #ff8000;
+  --color-accent-alt: #27f08a;
+
+  /* Status */
+  --color-success: #27f08a;
+  --color-warning: #ff8000;
+  --color-error: #ff4444;
+
+  /* Borders / focus */
+  --color-border: #2a2a2a;
+  --color-focus-ring: #ff8000;
+
+  /* Typography */
+  --font-sans:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}

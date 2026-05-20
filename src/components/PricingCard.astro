@@ -1,0 +1,78 @@
+---
+interface Props {
+  name: string;
+  price?: string;
+  priceSuffix?: string;
+  tierLabel?: string;
+  status?: "available" | "coming-soon";
+  features?: string[];
+  highlighted?: boolean;
+}
+
+const {
+  name,
+  price,
+  priceSuffix,
+  tierLabel,
+  status = "available",
+  features = [],
+  highlighted = false,
+} = Astro.props;
+
+const baseCard =
+  "flex flex-col gap-5 rounded-lg border p-6 bg-[color:var(--color-surface-1)]";
+const borderClass = highlighted
+  ? "border-[color:var(--color-accent)] shadow-[0_0_0_1px_var(--color-accent)]"
+  : "border-[color:var(--color-border)]";
+---
+
+<article class={`${baseCard} ${borderClass}`}>
+  <header class="flex flex-wrap items-baseline justify-between gap-2">
+    <h3 class="text-xl font-semibold text-text">{name}</h3>
+    {
+      tierLabel && (
+        <span class="text-xs font-medium uppercase tracking-wide text-accent">
+          {tierLabel}
+        </span>
+      )
+    }
+  </header>
+
+  {
+    price ? (
+      <div class="flex items-baseline gap-2">
+        <span class="text-4xl font-semibold tracking-tight text-text">
+          {price}
+        </span>
+        {priceSuffix && (
+          <span class="text-sm text-text-muted">{priceSuffix}</span>
+        )}
+      </div>
+    ) : (
+      <p class="text-sm font-medium uppercase tracking-wide text-text-muted">
+        {status === "coming-soon" ? "Coming soon" : ""}
+      </p>
+    )
+  }
+
+  {
+    features.length > 0 && (
+      <ul class="flex flex-col gap-2 text-sm text-text-muted">
+        {features.map((feature) => (
+          <li class="flex items-start gap-2">
+            <span class="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-accent-alt)]" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    Astro.slots.has("cta") && (
+      <div class="mt-auto flex flex-col gap-2 pt-2">
+        <slot name="cta" />
+      </div>
+    )
+  }
+</article>

@@ -1,0 +1,39 @@
+---
+import releaseSnapshot from "../data/release.json";
+
+interface Props {
+  variant?: "primary" | "secondary" | "compact";
+  href?: string;
+  label?: string;
+  showVersion?: boolean;
+}
+
+const {
+  variant = "primary",
+  href = "/damascus/download",
+  label,
+  showVersion = variant !== "compact",
+} = Astro.props;
+
+const version = releaseSnapshot.version || null;
+const resolvedLabel = label ?? "Download Damascus";
+
+const base = "inline-flex items-center justify-center font-medium rounded-md transition-colors no-underline";
+const variantClass = {
+  primary:
+    "px-5 py-3 text-base bg-[color:var(--color-accent)] text-[color:var(--color-surface-0)] hover:bg-[color:var(--color-accent)]/90",
+  secondary:
+    "px-5 py-3 text-base border border-[color:var(--color-border)] text-text bg-[color:var(--color-surface-1)] hover:bg-[color:var(--color-surface-2)]",
+  compact:
+    "px-3 py-1.5 text-sm bg-[color:var(--color-surface-1)] text-text border border-[color:var(--color-border)] hover:bg-[color:var(--color-surface-2)]",
+}[variant];
+---
+
+<a href={href} class={`${base} ${variantClass}`}>
+  <span>{resolvedLabel}</span>
+  {
+    showVersion && version && (
+      <span class="ml-2 text-xs font-normal opacity-80">· v{version}</span>
+    )
+  }
+</a>

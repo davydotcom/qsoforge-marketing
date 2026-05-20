@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import PricingCard from "../components/PricingCard.astro";
+import BuyButton from "../components/BuyButton.astro";
+import ComingSoonForm from "../components/ComingSoonForm.astro";
+
+const price = import.meta.env.PUBLIC_DAMASCUS_PRICE_USD ?? "25";
+
+const damascusFeatures = [
+  "Daily logging, contesting, POTA activations, multi-station P2P field ops",
+  "ADIF I/O, Cabrillo export, WSJT-X integration, LoTW + eQSL upload",
+  "Map view, DX & POTA spots, DUPE detection, multiple logbooks",
+  "First-class TUI alongside the GUI — same data, same keybindings",
+  "Windows, Linux (.deb / .rpm / .AppImage / Arch pkg). macOS planned.",
+  "Free 30-day evaluation with full features. License perpetual.",
+];
+
+const faqs = [
+  {
+    q: "Why $" + price + "?",
+    a: "We're pre-1.0. Founder pricing locks the current rate in for early supporters; once Damascus hits 1.0 the price rises to $50. Founder licenses remain perpetual through every 1.x release.",
+  },
+  {
+    q: "What happens at 1.0?",
+    a: "The price changes for new buyers. If you already own a founder license, nothing changes — it's perpetual and valid for the entire 1.x line.",
+  },
+  {
+    q: "Can I use my license on multiple machines?",
+    a: "Yes. The bundle is not device-bound. Tower at home, field laptop, club station shack PC, backup laptop — paste it everywhere you operate.",
+  },
+  {
+    q: "Refund policy?",
+    a: "We offer a free 30-day evaluation with the full feature set — that's the trial. If you buy and something goes wrong, email us and we'll make it right.",
+  },
+];
+---
+
+<BaseLayout
+  title="Pricing — QSO Forge"
+  description="Damascus is $25 founder pricing pre-1.0. Free 30-day evaluation. Perpetual license."
+  path="/pricing"
+>
+  <Hero
+    eyebrow="Pricing"
+    title="Founder pricing, while we're pre-1.0."
+    subtitle={`Damascus is $${price} right now and rises to $50 when 1.0 ships. Founder licenses are perpetual — they keep working through every 1.x release.`}
+  />
+
+  <section class="mx-auto max-w-5xl px-6 pb-8">
+    <div class="grid gap-4 md:grid-cols-3">
+      <PricingCard
+        name="Damascus"
+        price={`$${price}`}
+        priceSuffix="USD · one-time"
+        tierLabel="Founder pricing"
+        highlighted={true}
+        features={damascusFeatures}
+      >
+        <BuyButton slot="cta" variant="primary" showTier={false} />
+        <p class="text-center text-xs text-text-muted">
+          Free 30-day evaluation. No signup needed to try.
+        </p>
+      </PricingCard>
+
+      <PricingCard name="Tensile" status="coming-soon">
+        <ComingSoonForm slot="cta" productName="Tensile" />
+      </PricingCard>
+
+      <PricingCard name="Carbon" status="coming-soon">
+        <ComingSoonForm slot="cta" productName="Carbon" />
+      </PricingCard>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <h2 class="mb-8 text-2xl font-semibold tracking-tight">FAQ</h2>
+    <dl class="flex flex-col gap-6">
+      {
+        faqs.map((faq) => (
+          <div class="flex flex-col gap-2">
+            <dt class="text-base font-semibold text-text">{faq.q}</dt>
+            <dd class="text-text-muted leading-relaxed">{faq.a}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</BaseLayout>

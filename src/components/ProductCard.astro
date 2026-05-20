@@ -1,0 +1,49 @@
+---
+interface Props {
+  name: string;
+  tagline: string;
+  status: "available" | "coming-soon";
+  href: string;
+  icon?: string;
+}
+
+const { name, tagline, status, href, icon } = Astro.props;
+
+const isAvailable = status === "available";
+const statusLabel = isAvailable ? "Available" : "Coming soon";
+const statusClass = isAvailable
+  ? "border-[color:var(--color-accent-alt)] text-[color:var(--color-accent-alt)]"
+  : "border-[color:var(--color-border)] text-text-muted";
+---
+
+<a
+  href={href}
+  class="group flex flex-col gap-4 rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-6 no-underline transition-colors hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-surface-2)]"
+>
+  <div class="flex items-start justify-between gap-4">
+    <div class="flex items-center gap-3">
+      {
+        icon && (
+          <span
+            class="grid h-10 w-10 place-items-center rounded-md bg-[color:var(--color-surface-2)] font-mono text-sm text-accent"
+            aria-hidden="true"
+          >
+            {icon}
+          </span>
+        )
+      }
+      <h3 class="text-xl font-semibold text-text">{name}</h3>
+    </div>
+    <span
+      class={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium uppercase tracking-wide ${statusClass}`}
+    >
+      {statusLabel}
+    </span>
+  </div>
+  <p class="text-text-muted">{tagline}</p>
+  <span
+    class="mt-auto inline-flex items-center gap-1 text-sm font-medium text-accent"
+  >
+    {isAvailable ? "Learn more" : "Get notified"} →
+  </span>
+</a>

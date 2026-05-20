@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import RecoverLicenseForm from "../components/RecoverLicenseForm.astro";
+---
+
+<BaseLayout
+  title="Recover your Damascus license"
+  description="Re-send your Damascus license bundle to the email used at checkout."
+  path="/recover-license"
+>
+  <Hero
+    eyebrow="License recovery"
+    title="Lost your license bundle?"
+    subtitle="Enter the email you used at checkout. If we have a paid Damascus order on file, we'll re-send the license bundle. Rate-limited to one request per hour per email."
+  />
+
+  <section class="mx-auto max-w-2xl px-6 pb-20">
+    <RecoverLicenseForm />
+
+    <p class="mt-8 text-sm text-text-muted">
+      Trouble with recovery? Email <a href="mailto:support@qsoforge.com"
+        >support@qsoforge.com</a
+      > with the email and approximate date of purchase.
+    </p>
+  </section>
+</BaseLayout>

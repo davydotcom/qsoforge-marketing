@@ -1,0 +1,46 @@
+---
+import BuyButton from "./BuyButton.astro";
+
+const navItems = [
+  { href: "/damascus", label: "Damascus" },
+  { href: "/tensile", label: "Tensile" },
+  { href: "/carbon", label: "Carbon" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
+];
+---
+
+<header
+  class="sticky top-0 z-10 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface-0)]/85 backdrop-blur"
+>
+  <div
+    class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4"
+  >
+    <a href="/" class="flex items-center gap-2 text-text no-underline">
+      <span
+        class="grid h-8 w-8 place-items-center rounded-md bg-[color:var(--color-accent)] font-mono text-sm font-bold text-[color:var(--color-surface-0)]"
+        aria-hidden="true"
+      >
+        QF
+      </span>
+      <span class="font-semibold tracking-tight">QSO Forge</span>
+    </a>
+
+    <nav class="hidden flex-1 items-center gap-1 md:flex">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-md px-3 py-1.5 text-sm text-text-muted no-underline transition-colors hover:bg-[color:var(--color-surface-1)] hover:text-text"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="ml-auto flex items-center gap-3">
+      <BuyButton variant="compact" />
+    </div>
+  </div>
+</header>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+
+const orderNumber = Astro.url.searchParams.get("order");
+---
+
+<BaseLayout
+  title="Thanks for buying Damascus"
+  description="Your Damascus license bundle is on its way."
+  path="/thanks"
+>
+  <Hero
+    eyebrow="Order confirmed"
+    title="Thanks for buying Damascus."
+    subtitle="Your license bundle is on its way. Watch for an email from licenses@qsoforge.com within 24 hours — it contains a small qsl1.* string you paste into Damascus's activation modal."
+  />
+
+  <section class="mx-auto max-w-3xl px-6 pb-16">
+    <div
+      class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-6"
+    >
+      <h2 class="text-base font-semibold text-text">What happens next</h2>
+      <ol class="mt-4 flex flex-col gap-3 text-text-muted">
+        <li>
+          <span class="font-medium text-text">1.</span> A transactional email
+          arrives from <code>licenses@qsoforge.com</code> with your
+          <code>qsl1.*</code> bundle and copy-paste instructions.
+        </li>
+        <li>
+          <span class="font-medium text-text">2.</span> Open Damascus. Go to
+          <em>Settings → License</em> and paste the bundle into the field.
+        </li>
+        <li>
+          <span class="font-medium text-text">3.</span> You're activated — on
+          this machine and any other you operate on. The license is not
+          device-bound.
+        </li>
+      </ol>
+
+      {
+        orderNumber && (
+          <p class="mt-6 text-xs text-text-muted">
+            Order reference: <code>{orderNumber}</code>
+          </p>
+        )
+      }
+    </div>
+
+    <p class="mt-6 text-sm text-text-muted">
+      Didn't see the email? Check spam, then <a href="/recover-license">re-send
+      your license</a>.
+    </p>
+  </section>
+</BaseLayout>
