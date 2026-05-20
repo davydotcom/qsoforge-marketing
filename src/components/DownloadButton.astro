@@ -6,6 +6,7 @@ interface Props {
   href?: string;
   label?: string;
   showVersion?: boolean;
+  showArrow?: boolean;
 }
 
 const {
@@ -13,19 +14,21 @@ const {
   href = "/damascus/download",
   label,
   showVersion = variant !== "compact",
+  showArrow = true,
 } = Astro.props;
 
 const version = releaseSnapshot.version || null;
 const resolvedLabel = label ?? "Download Damascus";
 
-const base = "inline-flex items-center justify-center font-medium rounded-md transition-colors no-underline";
+const base =
+  "inline-flex items-center justify-center gap-2 font-medium rounded-md transition-colors no-underline";
 const variantClass = {
   primary:
     "px-5 py-3 text-base bg-[color:var(--color-accent)] text-[color:var(--color-surface-0)] hover:bg-[color:var(--color-accent)]/90",
   secondary:
     "px-5 py-3 text-base border border-[color:var(--color-border)] text-text bg-[color:var(--color-surface-1)] hover:bg-[color:var(--color-surface-2)]",
   compact:
-    "px-3 py-1.5 text-sm bg-[color:var(--color-surface-1)] text-text border border-[color:var(--color-border)] hover:bg-[color:var(--color-surface-2)]",
+    "px-3 py-1.5 text-sm bg-[color:var(--color-accent)] text-[color:var(--color-surface-0)] uppercase tracking-wider font-semibold hover:bg-[color:var(--color-accent)]/90",
 }[variant];
 ---
 
@@ -33,7 +36,26 @@ const variantClass = {
   <span>{resolvedLabel}</span>
   {
     showVersion && version && (
-      <span class="ml-2 text-xs font-normal opacity-80">· v{version}</span>
+      <span class="rounded bg-black/20 px-1.5 py-0.5 font-mono text-xs">
+        v{version}
+      </span>
+    )
+  }
+  {
+    showArrow && (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M7 2v9M7 11l-4-4M7 11l4-4" />
+      </svg>
     )
   }
 </a>

@@ -1,0 +1,39 @@
+---
+interface Principle {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  principles: Principle[];
+}
+
+const { principles } = Astro.props;
+---
+
+<ul class="flex flex-col gap-4">
+  {
+    principles.map((p) => (
+      <li class="flex items-start gap-3 text-text-muted">
+        <svg
+          class="mt-1 shrink-0"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="var(--color-accent-alt)"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 8l3 3 7-7" />
+        </svg>
+        <span>
+          <strong class="font-semibold text-text">{p.title}</strong>{" "}
+          {p.body}
+        </span>
+      </li>
+    ))
+  }
+</ul>

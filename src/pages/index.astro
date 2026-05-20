@@ -4,31 +4,53 @@ import Hero from "../components/Hero.astro";
 import ProductCard from "../components/ProductCard.astro";
 import DownloadButton from "../components/DownloadButton.astro";
 import BuyButton from "../components/BuyButton.astro";
+import BrandStrip from "../components/BrandStrip.astro";
+import PrincipleList from "../components/PrincipleList.astro";
+import CtaBand from "../components/CtaBand.astro";
 
 const products = [
   {
     name: "Damascus",
-    tagline:
-      "Fast, cross-platform amateur radio logging. Daily QSOs, contesting, POTA, multi-station P2P field ops.",
+    tagline: "The logging app",
+    description:
+      "A cross-platform amateur radio logger with a polished GUI and a first-class TUI — sharing one Rust core, one logbook, one design language.",
     status: "available" as const,
     href: "/damascus",
-    icon: "Da",
+    iconKey: "damascus" as const,
+    bullets: [
+      "Windows · macOS · Linux",
+      "GUI + TUI from one binary",
+      "Contesting · POTA · Daily logging",
+      "P2P multi-station field sync",
+    ],
   },
   {
     name: "Tensile",
-    tagline:
-      "A modern replacement for the public repeater directory. Open data, fast search, current.",
+    tagline: "The repeater directory",
+    description:
+      "A modern, fast, open replacement for the repeater book — searchable from desktop, web, and your HT.",
     status: "coming-soon" as const,
     href: "/tensile",
-    icon: "Te",
+    iconKey: "tensile" as const,
+    bullets: [
+      "Crowdsourced, geo-aware",
+      "Open data, open formats",
+      "QR-to-HT for field tuning",
+    ],
   },
   {
     name: "Carbon",
-    tagline:
-      "Browser-based SDR for QSO Forge. Tune, watch the waterfall, work the band — from anywhere.",
+    tagline: "The WebSDR",
+    description:
+      "Tune the bands from any browser, anywhere — with a modern, focused interface built around spectrum and waterfall work.",
     status: "coming-soon" as const,
     href: "/carbon",
-    icon: "Ca",
+    iconKey: "carbon" as const,
+    bullets: [
+      "Browser-native, no plugins",
+      "Modern spectrum + waterfall",
+      "Mobile-friendly tuning",
+    ],
   },
 ];
 ---
@@ -48,29 +70,91 @@ const products = [
     <BuyButton slot="cta" variant="secondary" />
   </Hero>
 
-  <section class="mx-auto max-w-5xl px-6 py-12">
-    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
-      The product line
-    </h2>
+  <BrandStrip />
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <div class="mb-10 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        The product line
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        One stack. One design language.<br />Three tools for the modern shack.
+      </h2>
+    </div>
     <div class="grid gap-4 md:grid-cols-3">
       {
         products.map((product) => (
           <ProductCard
             name={product.name}
             tagline={product.tagline}
+            description={product.description}
             status={product.status}
             href={product.href}
-            icon={product.icon}
+            iconKey={product.iconKey}
+            bullets={product.bullets}
           />
         ))
       }
     </div>
   </section>
 
-  <section class="mx-auto max-w-3xl px-6 py-16 text-center">
-    <p class="text-lg text-text-muted">
-      Built by hams for hams. Cross-platform from day one. Offline-first
-      because the field doesn't have a hotspot.
-    </p>
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <div class="grid gap-12 md:grid-cols-[1.1fr_1fr]">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-widest text-accent">
+          Why we build
+        </p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+          Function and form, on the same band.
+        </h2>
+        <div class="mt-6 flex flex-col gap-4 text-text-muted leading-relaxed">
+          <p>
+            Hams have built brilliant tools for decades — that lineage is the
+            reason this hobby works. <strong class="text-text font-semibold">QSO Forge picks up the thread with a modern stack:</strong> cross-platform from day one, keyboard-first, designed
+            with the same engineering care you put into your antenna farm.
+            We build the software we want to use on Field Day.
+          </p>
+          <p>
+            We build software with the same engineering discipline and material
+            quality as the radios on your bench — fast, keyboard-first, and
+            good-looking on every surface.
+            <strong class="text-text font-semibold">Ham radio software built like racing hardware.</strong>
+          </p>
+        </div>
+      </div>
+      <div>
+        <PrincipleList
+          principles={[
+            {
+              title: "Cross-platform from day one.",
+              body: 'Windows, macOS, Linux — not "Linux later, maybe."',
+            },
+            {
+              title: "Keyboard-first, mouse-friendly.",
+              body: "Built for the contest operator who never lifts a hand.",
+            },
+            {
+              title: "Offline-first.",
+              body: "Your local data is yours. No cloud lock-in, no upload tax.",
+            },
+            {
+              title: "Open formats.",
+              body: "ADIF in, ADIF out. Cabrillo per spec. Your logbook is portable.",
+            },
+            {
+              title: "Modern design that respects your eyes.",
+              body: "Dark by default. Tabular numerals. Quiet motion.",
+            },
+          ]}
+        />
+      </div>
+    </div>
   </section>
+
+  <CtaBand
+    heading="Ready to upgrade your shack?"
+    body="Damascus is a free 30-day evaluation; founder license is $25 while we're pre-1.0."
+  >
+    <DownloadButton variant="primary" />
+  </CtaBand>
 </BaseLayout>

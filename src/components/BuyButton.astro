@@ -4,6 +4,7 @@ interface Props {
   href?: string;
   label?: string;
   showTier?: boolean;
+  showArrow?: boolean;
 }
 
 const {
@@ -11,13 +12,16 @@ const {
   href = import.meta.env.PUBLIC_LS_DAMASCUS_CHECKOUT_URL ?? "/pricing",
   label,
   showTier = variant !== "compact",
+  showArrow = variant === "secondary",
 } = Astro.props;
 
 const price = import.meta.env.PUBLIC_DAMASCUS_PRICE_USD ?? "25";
 const tierLabel = "founder pricing";
-const resolvedLabel = label ?? (variant === "compact" ? `Buy — $${price}` : `Buy license — $${price}`);
+const resolvedLabel =
+  label ?? (variant === "compact" ? `Buy — $${price}` : `Buy license — $${price}`);
 
-const base = "inline-flex items-center justify-center font-medium rounded-md transition-colors no-underline";
+const base =
+  "inline-flex items-center justify-center gap-2 font-medium rounded-md transition-colors no-underline";
 const variantClass = {
   primary:
     "px-5 py-3 text-base bg-[color:var(--color-accent)] text-[color:var(--color-surface-0)] hover:bg-[color:var(--color-accent)]/90",
@@ -32,7 +36,24 @@ const variantClass = {
   <span>{resolvedLabel}</span>
   {
     showTier && (
-      <span class="ml-2 text-xs font-normal opacity-80">· {tierLabel}</span>
+      <span class="text-xs font-normal opacity-80">· {tierLabel}</span>
+    )
+  }
+  {
+    showArrow && (
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M3 7h8M11 7l-4-4M11 7l-4 4" />
+      </svg>
     )
   }
 </a>

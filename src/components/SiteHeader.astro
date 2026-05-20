@@ -1,5 +1,5 @@
 ---
-import BuyButton from "./BuyButton.astro";
+import DownloadButton from "./DownloadButton.astro";
 
 const navItems = [
   { href: "/damascus", label: "Damascus" },
@@ -13,9 +13,7 @@ const navItems = [
 <header
   class="sticky top-0 z-10 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface-0)]/85 backdrop-blur"
 >
-  <div
-    class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4"
-  >
+  <div class="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
     <a href="/" class="flex items-center gap-2 text-text no-underline">
       <span
         class="grid h-8 w-8 place-items-center rounded-md bg-[color:var(--color-accent)] font-mono text-sm font-bold text-[color:var(--color-surface-0)]"
@@ -23,7 +21,7 @@ const navItems = [
       >
         QF
       </span>
-      <span class="font-semibold tracking-tight">QSO Forge</span>
+      <span class="font-semibold tracking-tight uppercase">QSO Forge</span>
     </a>
 
     <nav class="hidden flex-1 items-center gap-1 md:flex">
@@ -40,7 +38,7 @@ const navItems = [
     </nav>
 
     <div class="ml-auto flex items-center gap-3">
-      <BuyButton variant="compact" />
+      <DownloadButton variant="compact" showArrow={false} showVersion={false} label="Download" />
     </div>
   </div>
 </header>
