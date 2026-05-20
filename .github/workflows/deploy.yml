@@ -31,9 +31,9 @@ jobs:
           PUBLIC_DAMASCUS_PRICE_USD: ${{ vars.PUBLIC_DAMASCUS_PRICE_USD || '25' }}
           PUBLIC_RELEASES_MANIFEST_URL: ${{ vars.PUBLIC_RELEASES_MANIFEST_URL || 'https://releases.qsoforge.com/damascus/latest.json' }}
 
-      - name: Deploy to Cloudflare Pages
+      - name: Deploy Worker + Assets to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=qso-marketing --branch=${{ github.ref_name }}
+          command: deploy
