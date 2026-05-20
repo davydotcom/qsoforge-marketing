@@ -8,31 +8,79 @@ interface Props {
 const { eyebrow, title, subtitle } = Astro.props;
 ---
 
-<section class="mx-auto max-w-5xl px-6 pt-20 pb-12 md:pt-28">
-  {
-    eyebrow && (
-      <p class="text-sm font-medium uppercase tracking-widest text-accent">
-        {eyebrow}
-      </p>
-    )
-  }
-  <h1
-    class="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl"
-  >
-    {title}
-  </h1>
-  {
-    subtitle && (
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-text-muted md:text-xl">
-        {subtitle}
-      </p>
-    )
-  }
-  {
-    Astro.slots.has("cta") && (
-      <div class="mt-8 flex flex-wrap gap-3">
-        <slot name="cta" />
-      </div>
-    )
-  }
+<section class="hero">
+  <div class="hero-inner mx-auto max-w-5xl px-6 pt-20 pb-12 md:pt-28">
+    {
+      eyebrow && (
+        <p class="text-sm font-medium uppercase tracking-widest text-accent">
+          {eyebrow}
+        </p>
+      )
+    }
+    <h1
+      class="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl"
+    >
+      {title}
+    </h1>
+    {
+      subtitle && (
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-text-muted md:text-xl">
+          {subtitle}
+        </p>
+      )
+    }
+    {
+      Astro.slots.has("cta") && (
+        <div class="mt-8 flex flex-wrap gap-3">
+          <slot name="cta" />
+        </div>
+      )
+    }
+  </div>
 </section>
+
+<style>
+  /* Hero background — mirrors the mockup at .hero/mocks/marketing-site-v1/:
+     a papaya glow at the top, a surface-2 → surface-0 gradient beneath,
+     and a faint 64px grid masked with a radial gradient so it fades out
+     at the edges. Mirrors #home / #home::before in the mockup. */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        ellipse 1100px 600px at 50% 0%,
+        rgba(255, 128, 0, 0.08) 0%,
+        transparent 60%
+      ),
+      linear-gradient(
+        180deg,
+        var(--color-surface-2) 0%,
+        var(--color-surface-0) 70%
+      );
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(
+      ellipse 800px 500px at 50% 30%,
+      black 0%,
+      transparent 70%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 800px 500px at 50% 30%,
+      black 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+</style>
