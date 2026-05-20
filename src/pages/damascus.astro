@@ -135,24 +135,44 @@ const features = [
         The interface
       </p>
       <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-        This is what your logbook should look like.
+        Same core. Two surfaces. Pick your shack.
       </h2>
+      <p class="mt-3 text-text-muted">
+        The Slint desktop GUI and the ratatui TUI share one Rust core and one logbook. Identical reflow, identical hotkeys, identical exports — log on whichever surface fits the operating position.
+      </p>
     </div>
-    <figure
-      class="overflow-hidden rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)]"
-    >
-      <img
-        src="/screenshots/damascus.png"
-        alt="Damascus desktop app — POTA activation at Caesar Creek State Park (US-1940), 11 QSOs logged on 40m CW, with live DX spots, POTA Activator panel, and station leaderboard visible."
-        loading="lazy"
-        class="block h-auto w-full"
-      />
-      <figcaption
-        class="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-4 py-2 text-center font-mono text-xs uppercase tracking-widest text-text-muted"
+    <div class="grid gap-6 md:grid-cols-2">
+      <figure
+        class="overflow-hidden rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)]"
       >
-        Real Damascus session · POTA activation at US-1940 · 40m CW
-      </figcaption>
-    </figure>
+        <img
+          src="/screenshots/damascus.png"
+          alt="Damascus desktop GUI — POTA activation at Caesar Creek State Park (US-1940), 11 QSOs logged on 40m CW, with live DX spots, POTA Activator panel, and station leaderboard visible."
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+        <figcaption
+          class="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-4 py-2 text-center font-mono text-xs uppercase tracking-widest text-text-muted"
+        >
+          Desktop GUI · US-1940 · 40m CW
+        </figcaption>
+      </figure>
+      <figure
+        class="overflow-hidden rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)]"
+      >
+        <img
+          src="/screenshots/damascus-tui.png"
+          alt="Damascus terminal UI — same POTA activation at US-1940, 11 QSOs on 40m CW shown in a ratatui interface with entry strip, log table, and POTA Activator panel."
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+        <figcaption
+          class="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-4 py-2 text-center font-mono text-xs uppercase tracking-widest text-text-muted"
+        >
+          Terminal UI · US-1940 · 40m CW
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="mx-auto max-w-5xl px-6 py-12">
