@@ -78,7 +78,7 @@ Pushes to `main` trigger `.github/workflows/deploy.yml`:
 
 1. Checkout, install Node 20 (per `.nvmrc`), `npm ci`.
 2. `npm run build` — `prebuild` fetches the R2 manifest, then Astro emits `dist/`.
-3. `cloudflare/wrangler-action@v3` runs `wrangler pages deploy dist --project-name=qso-marketing`.
+3. `cloudflare/wrangler-action@v3` runs `wrangler pages deploy dist --project-name=quiet-math-792e` (the auto-generated Pages project slug; the public domain is `qsoforge.com` via the project's Custom Domains binding).
 
 **GitHub Actions secrets required:**
 - `CLOUDFLARE_API_TOKEN` — Pages-scoped token, "Edit Cloudflare Pages" permission.
