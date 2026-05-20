@@ -7,6 +7,21 @@ import PlatformBadge from "../components/PlatformBadge.astro";
 import DownloadButton from "../components/DownloadButton.astro";
 import BuyButton from "../components/BuyButton.astro";
 import CodeBlock from "../components/CodeBlock.astro";
+import { getReleaseSnapshot } from "../lib/releases";
+
+const release = getReleaseSnapshot();
+const publishedDate = release.published_at
+  ? new Date(release.published_at).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+  : null;
+const versionLabel = release.version
+  ? publishedDate
+    ? `● Available now · v${release.version} · ${publishedDate}`
+    : `● Available now · v${release.version}`
+  : "● Available now";
 
 const features = [
   {
@@ -78,10 +93,12 @@ const installSnippets = [
   ogImage="/og/damascus.png"
 >
   <Hero
-    eyebrow="Damascus"
-    title="Logging that keeps up with the operator."
-    subtitle="A serious cross-platform logging app for daily QSOs, contests, POTA, and field ops. Free 30-day evaluation — full features, no signup. License unlocks beyond evaluation."
+    eyebrow={versionLabel}
+    eyebrowVariant="success"
+    variant="wordmark"
+    subtitle="A modern, cross-platform ham radio logging application. Free 30-day evaluation — full features, no signup. License unlocks beyond evaluation."
   >
+    <Fragment slot="title">DAM<span class="text-accent">A</span>SCUS</Fragment>
     <DownloadButton slot="cta" variant="primary" />
     <BuyButton slot="cta" variant="secondary" />
   </Hero>

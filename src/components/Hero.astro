@@ -1,32 +1,55 @@
 ---
 interface Props {
   eyebrow?: string;
-  title: string;
+  eyebrowVariant?: "accent" | "success";
+  title?: string;
   accent?: string;
   subtitle?: string;
+  variant?: "default" | "wordmark";
 }
 
-const { eyebrow, title, accent, subtitle } = Astro.props;
+const {
+  eyebrow,
+  eyebrowVariant = "accent",
+  title,
+  accent,
+  subtitle,
+  variant = "default",
+} = Astro.props;
+
+const hasTitleSlot = Astro.slots.has("title");
+
+const eyebrowColor =
+  eyebrowVariant === "success" ? "text-[color:var(--color-success)]" : "text-accent";
+
+const titleClasses =
+  variant === "wordmark"
+    ? "mt-4 text-5xl font-extrabold uppercase tracking-tighter leading-none md:text-7xl"
+    : "mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl";
 ---
 
 <section class="hero">
   <div class="hero-inner mx-auto max-w-5xl px-6 pt-20 pb-12 md:pt-28">
     {
       eyebrow && (
-        <p class="text-sm font-medium uppercase tracking-widest text-accent">
+        <p class={`text-sm font-medium uppercase tracking-widest ${eyebrowColor}`}>
           {eyebrow}
         </p>
       )
     }
-    <h1
-      class="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl"
-    >
-      {title}
+    <h1 class={titleClasses}>
       {
-        accent && (
+        hasTitleSlot ? (
+          <slot name="title" />
+        ) : (
           <>
-            <br />
-            <span class="text-accent">{accent}</span>
+            {title}
+            {accent && (
+              <>
+                <br />
+                <span class="text-accent">{accent}</span>
+              </>
+            )}
           </>
         )
       }
