@@ -2,10 +2,11 @@
 interface Props {
   eyebrow?: string;
   title: string;
+  accent?: string;
   subtitle?: string;
 }
 
-const { eyebrow, title, subtitle } = Astro.props;
+const { eyebrow, title, accent, subtitle } = Astro.props;
 ---
 
 <section class="hero">
@@ -21,6 +22,14 @@ const { eyebrow, title, subtitle } = Astro.props;
       class="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl"
     >
       {title}
+      {
+        accent && (
+          <>
+            <br />
+            <span class="text-accent">{accent}</span>
+          </>
+        )
+      }
     </h1>
     {
       subtitle && (
