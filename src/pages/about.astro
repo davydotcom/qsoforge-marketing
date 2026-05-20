@@ -1,81 +1,102 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+
+const beliefs = [
+  "Software for hams should look as good as the rest of your tools.",
+  "Cross-platform is non-negotiable.",
+  "Your logbook belongs to you — open formats only.",
+  "Keyboard-first, contest-ready, headphone-friendly.",
+  "Built by hams who actually operate.",
+];
 ---
 
 <BaseLayout
   title="About QSO Forge"
-  description="QSO Forge builds engineering-quality amateur radio software. Cross-platform from day one. Offline-first because the field doesn't have a hotspot."
+  description="QSO Forge builds engineering-quality amateur radio software. Cross-platform, modern, offline-first — built by hams, for hams."
   path="/about"
   ogImage="/og/about.png"
 >
-  <Hero
-    eyebrow="About"
-    title="Software the field can rely on."
-    subtitle="QSO Forge builds amateur radio software for operators who care about how their tools behave. Cross-platform from day one. Offline-first because the field doesn't have a hotspot. Built in the open enough to earn trust, closed enough to fund the work."
-  />
+  <Hero eyebrow="About" title="QSO Forge, LLC." />
 
-  <section class="mx-auto max-w-3xl px-6 py-12">
-    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
-      Principles
-    </h2>
-    <div class="flex flex-col gap-6">
-      <article
-        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
-      >
-        <h3 class="text-base font-semibold text-text">
-          Engineering quality first
-        </h3>
-        <p class="mt-2 text-text-muted">
-          The shipped app is the spec. We write things down, we test what we
-          build, and we sweat the workflows that operators actually use under
-          contest pressure.
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <div class="grid gap-12 md:grid-cols-[1.1fr_1fr]">
+      <div class="flex flex-col gap-5 leading-relaxed text-text-muted">
+        <p>
+          Amateur radio is a hundred-year-old craft, built by operators and
+          engineers who have always raised the bar on what's possible with a
+          wire and a will. QSO Forge is our contribution to that lineage:
+          software engineered with the same care that goes into a homebrew
+          rig or a carefully tuned antenna. Cross-platform, modern, and made
+          for the way today's operators actually run.
         </p>
-      </article>
-      <article
-        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
-      >
-        <h3 class="text-base font-semibold text-text">
-          Cross-platform parity
-        </h3>
-        <p class="mt-2 text-text-muted">
-          Windows and Linux ship together on day one. macOS lands when it
-          earns its place. Whatever surface you use, the same data, the same
-          keybindings, the same answers.
+        <p>
+          <strong class="font-semibold text-text"
+            >QSO Forge builds tools that are as carefully engineered as the
+            radios sitting in our shacks.</strong
+          > Cross-platform, modern, opinionated, and priced fairly. Proprietary
+          where it lets us move faster, open at the formats that matter (ADIF,
+          Cabrillo, your data). Built by hams, for hams, with a stubborn
+          refusal to ship anything that looks like it came out of 1998.
         </p>
-      </article>
-      <article
-        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
-      >
-        <h3 class="text-base font-semibold text-text">Offline-first</h3>
-        <p class="mt-2 text-text-muted">
-          DXpeditions, POTA in a canyon, contest stations in remote cabins —
-          if it needs a hotspot to work, it's not built for hams. The license,
-          the logbook, the rig control: all local.
+        <p>
+          We're a small operation. That's the point. Every line of code is
+          written with the operator in front of the radio in mind — at 0300Z,
+          contest night, generator humming, coffee cold.
         </p>
-      </article>
-      <article
-        class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
-      >
-        <h3 class="text-base font-semibold text-text">Built by hams</h3>
-        <p class="mt-2 text-text-muted">
-          We're operators. We use what we ship. If a feature feels wrong on
-          the air, it doesn't make it into the next release.
-        </p>
-      </article>
+      </div>
+
+      <div>
+        <h2 class="mb-4 text-sm font-medium uppercase tracking-widest text-text-muted">
+          What we believe
+        </h2>
+        <ul class="flex flex-col gap-3 text-text-muted">
+          {
+            beliefs.map((belief) => (
+              <li class="flex items-start gap-3">
+                <svg
+                  class="mt-1 shrink-0"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="var(--color-accent-alt)"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 8l3 3 7-7" />
+                </svg>
+                <span>{belief}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </section>
 
   <section class="mx-auto max-w-3xl px-6 py-12">
-    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
-      Founder
-    </h2>
     <div
-      class="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-6"
+      class="flex items-center gap-5 rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-6"
     >
-      <p class="text-text-muted">
-        Founder bio placeholder — replace before launch.
-      </p>
+      <div
+        class="grid h-16 w-16 shrink-0 place-items-center rounded-md bg-[color:var(--color-accent)] font-mono text-xl font-bold text-[color:var(--color-surface-0)]"
+        aria-hidden="true"
+      >
+        DM
+      </div>
+      <div>
+        <div class="text-lg font-semibold text-text">
+          David <span class="font-mono text-accent">KC9P</span>
+        </div>
+        <p class="mt-1 text-sm leading-relaxed text-text-muted">
+          Founder &amp; principal engineer. Started QSO Forge to modernize the
+          ham radio software stack and bring sensible, well-considered UI/UX
+          into the ecosystem.
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>

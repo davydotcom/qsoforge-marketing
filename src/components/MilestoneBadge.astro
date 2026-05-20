@@ -1,0 +1,19 @@
+---
+interface Props {
+  milestone: string;
+  label: string;
+  when: string;
+}
+
+const { milestone, label, when } = Astro.props;
+---
+
+<div
+  class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] px-4 py-2 font-mono text-xs uppercase tracking-widest text-text-muted"
+>
+  <span class="text-text">{milestone}</span>
+  <span aria-hidden="true">·</span>
+  <span class="text-accent">{label}</span>
+  <span aria-hidden="true">·</span>
+  <span>{when}</span>
+</div>

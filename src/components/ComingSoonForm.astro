@@ -1,38 +1,55 @@
 ---
 interface Props {
   productName: string;
+  layout?: "inline" | "stacked";
 }
 
-const { productName } = Astro.props;
+const { productName, layout = "inline" } = Astro.props;
 const endpoint = import.meta.env.PUBLIC_BUTTONDOWN_ENDPOINT ?? "";
 const formId = `coming-soon-${productName.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+const isInline = layout === "inline";
 ---
 
 <form
   id={formId}
-  class="flex w-full max-w-md flex-col gap-3"
+  class="flex w-full max-w-xl flex-col gap-3"
   data-endpoint={endpoint}
   data-product={productName}
 >
-  <label class="flex flex-col gap-2 text-sm">
-    <span class="text-text-muted">
-      Notify me when {productName} ships
-    </span>
+  <div class:list={[isInline ? "flex flex-col gap-2 sm:flex-row" : "flex flex-col gap-2"]}>
     <input
       type="email"
       name="email"
       required
       autocomplete="email"
-      placeholder="you@callsign.example"
-      class="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] px-4 py-3 text-text placeholder:text-text-muted focus:border-[color:var(--color-accent)] focus:outline-none"
+      placeholder="you@example.com"
+      aria-label={`Email address for ${productName} updates`}
+      class="flex-1 rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] px-4 py-3 text-text placeholder:text-text-muted focus:border-[color:var(--color-accent)] focus:outline-none"
     />
-  </label>
-  <button
-    type="submit"
-    class="inline-flex items-center justify-center rounded-md bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-[color:var(--color-surface-0)] transition-colors hover:bg-[color:var(--color-accent)]/90"
-  >
-    Notify me
-  </button>
+    <button
+      type="submit"
+      class="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-[color:var(--color-surface-0)] transition-colors hover:bg-[color:var(--color-accent)]/90"
+    >
+      Notify me
+    </button>
+  </div>
+  <p class="flex items-center gap-2 text-sm text-text-muted">
+    <svg
+      class="shrink-0"
+      width="14"
+      height="14"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="var(--color-accent-alt)"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 8l3 3 7-7"></path>
+    </svg>
+    <span>We'll email when there's something to show. No spam, no list-sharing.</span>
+  </p>
   <p
     class="hidden text-sm text-[color:var(--color-success)]"
     data-state="success"

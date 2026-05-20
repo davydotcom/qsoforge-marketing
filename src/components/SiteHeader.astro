@@ -38,7 +38,74 @@ const navItems = [
     </nav>
 
     <div class="ml-auto flex items-center gap-3">
-      <DownloadButton variant="compact" showArrow={false} showVersion={false} label="Download" />
+      <DownloadButton
+        variant="compact"
+        showArrow={false}
+        showVersion={false}
+        label="Download"
+      />
+      <button
+        type="button"
+        id="site-header-mobile-toggle"
+        aria-label="Open menu"
+        aria-controls="site-header-mobile-menu"
+        aria-expanded="false"
+        class="grid h-9 w-9 place-items-center rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] text-text md:hidden"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M2 4h12M2 8h12M2 12h12"></path>
+        </svg>
+      </button>
     </div>
   </div>
+
+  <nav
+    id="site-header-mobile-menu"
+    hidden
+    class="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-0)] px-6 py-3 md:hidden"
+  >
+    <ul class="flex flex-col gap-1">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block rounded-md px-3 py-2 text-base text-text no-underline hover:bg-[color:var(--color-surface-1)]"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>
+
+<script is:inline>
+  (() => {
+    const toggle = document.getElementById("site-header-mobile-toggle");
+    const menu = document.getElementById("site-header-mobile-menu");
+    if (!toggle || !menu) return;
+    toggle.addEventListener("click", () => {
+      const isOpen = !menu.hidden;
+      menu.hidden = isOpen;
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+    });
+    menu.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => {
+        menu.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+      }),
+    );
+  })();
+</script>
