@@ -1,19 +1,23 @@
 ---
+import FeatureIcon from "./FeatureIcon.astro";
+import type { FeatureIconKind } from "../lib/icons";
+
 interface Props {
   title: string;
   body: string;
+  iconKind?: FeatureIconKind;
 }
 
-const { title, body } = Astro.props;
+const { title, body, iconKind } = Astro.props;
 ---
 
 <div
-  class="flex flex-col gap-2 rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
+  class="flex flex-col gap-3 rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)] p-5"
 >
   {
-    Astro.slots.has("icon") && (
-      <div class="text-accent">
-        <slot name="icon" />
+    iconKind && (
+      <div class="grid h-8 w-8 place-items-center rounded-md border border-[color:var(--color-accent)]/30 bg-[color:var(--color-accent)]/10">
+        <FeatureIcon kind={iconKind} />
       </div>
     )
   }

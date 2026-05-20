@@ -3,10 +3,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import FeatureCard from "../components/FeatureCard.astro";
+import PitchCard from "../components/PitchCard.astro";
 import PlatformBadge from "../components/PlatformBadge.astro";
 import DownloadButton from "../components/DownloadButton.astro";
 import BuyButton from "../components/BuyButton.astro";
-import CodeBlock from "../components/CodeBlock.astro";
+import PlatformCard from "../components/PlatformCard.astro";
+import CtaBand from "../components/CtaBand.astro";
 import { getReleaseSnapshot } from "../lib/releases";
 
 const release = getReleaseSnapshot();
@@ -23,67 +25,69 @@ const versionLabel = release.version
     : `● Available now · v${release.version}`
   : "● Available now";
 
-const features = [
+const pitch = [
   {
-    title: "Daily logging",
-    body: "Fast keyboard-driven entry, ADIF I/O, multiple logbooks, operator switching. The boring stuff, done right.",
+    heading: "Built for both screens you use.",
+    body: "A polished Slint desktop GUI AND a first-class ratatui TUI — same Rust core, same logbook, identical reflow rules. Pick the surface you want.",
   },
   {
-    title: "Contesting",
-    body: "ARRL FD, WFD, NAQP, state QSO parties. Cabrillo export. DUPE detection. Adaptive entry strip per contest.",
+    heading: "Engineered for field reality.",
+    body: "Peer-to-peer multi-station sync over flaky field wifi. Op-log + hybrid logical clock means no QSOs lost when the generator hiccups.",
   },
   {
-    title: "POTA",
-    body: "Park lookups, activation tracking, P2P, stats. POTA spots, DX spots, map view.",
-  },
-  {
-    title: "Multi-station field ops",
-    body: "Two laptops in a tent on Field Day, syncing logs peer-to-peer over the LAN. No cloud, no internet required.",
-  },
-  {
-    title: "WSJT-X & rig control",
-    body: "Hamlib-backed rig control, WSJT-X integration for FT8/FT4, frequency and mode autofill.",
-  },
-  {
-    title: "LoTW & eQSL",
-    body: "Sign, upload, fetch confirmations. The pipeline you'd build yourself if you had the time.",
-  },
-  {
-    title: "Lookup providers",
-    body: "QRZ, HamQTH, callbook lookups with credential management that doesn't leak your password.",
-  },
-  {
-    title: "First-class TUI",
-    body: "Full ratatui TUI alongside the GUI. Same data, same keys, same workflows. SSH into your shack PC and just log.",
-  },
-  {
-    title: "Cross-platform parity",
-    body: "Windows, Linux (.deb / .rpm / .AppImage / Arch). macOS planned. Built on Rust + Slint.",
+    heading: "Modern by default.",
+    body: "Dark theme that respects your eyes, papaya and green accents tuned for low-light shacks, tabular monospace for everything that compares. Designed to feel as polished as the rig it sits next to.",
   },
 ];
 
-const installSnippets = [
+const features = [
   {
-    label: "Debian / Ubuntu",
-    body: "sudo dpkg -i damascus_<version>_amd64.deb",
+    title: "Keyboard-first QSO entry",
+    body: "Single-line entry strip with callsign-lookup-as-you-type (QRZ, HamQTH, Callook), DXCC and prior-QSO flags, auto-populated grid. Fully remappable hotkeys.",
+    iconKind: "keyboard" as const,
   },
   {
-    label: "Fedora / RHEL",
-    body: "sudo rpm -i damascus-<version>.x86_64.rpm",
+    title: "Multiple logbooks",
+    body: "One Master Log plus unlimited contest, POTA, and custom logbooks. Non-destructive merge-to-Master with preview. Selective LoTW / QRZ / eQSL upload — no double-uploads, ever.",
+    iconKind: "list" as const,
   },
   {
-    label: "Arch",
-    body: "sudo pacman -U damascus-<version>-x86_64.pkg.tar.zst",
+    title: "Contest mode",
+    body: "Built-in ARRL Field Day, Winter Field Day, NAQP, state QSO parties. Exchange validation, scoring, rolling rate meter (10m / 60m), Run vs S&P, multi-op aware out of the box.",
+    iconKind: "signal" as const,
   },
   {
-    label: "AppImage (any Linux)",
-    body: "chmod +x damascus-<version>.AppImage && ./damascus-<version>.AppImage",
+    title: "P2P multi-station sync",
+    body: "Field Day-grade. Op-log + hybrid logical clock, mesh relay between stations, no central server. Same-band / same-mode collision warnings per contest rules.",
+    iconKind: "p2p" as const,
   },
   {
-    label: "Windows",
-    body: "Double-click the .msi and follow the installer.",
+    title: "POTA Activator + Hunter",
+    body: "Per-activation logbooks, n-fer support, auto MY_SIG_INFO, live activation stats (P2P count, progress to 10), one-click POTA-formatted ADIF export.",
+    iconKind: "pota" as const,
+  },
+  {
+    title: "Rig control & power telemetry",
+    body: "Native plugins for Yaesu FTDX-10, Icom IC-7610 / IC-7300, Elecraft K4 — plus a Hamlib bridge for hundreds more rigs. Read and set frequency, mode, band, VFO, split, and live TX power where the rig reports it.",
+    iconKind: "rig" as const,
+  },
+  {
+    title: "Native LoTW signing",
+    body: "Pure-Rust certificate signing. No TQSL dependency. Identical behavior on Windows, macOS, and Linux. Confirmations downloaded via the LoTW report API.",
+    iconKind: "lotw" as const,
+  },
+  {
+    title: "DX cluster + spotting",
+    body: "Built-in cluster client, per-cluster filters, click-to-tune sends frequency to the active radio. Spots feed the POTA Hunter workspace and pre-warm the callsign cache.",
+    iconKind: "dx" as const,
+  },
+  {
+    title: "WSJT-X / JTDX integration",
+    body: "UDP feed support. FT8 / FT4 QSOs auto-route to the active logbook with full ADIF fidelity. No copy-paste, no second logger.",
+    iconKind: "waveform" as const,
   },
 ];
+
 ---
 
 <BaseLayout
@@ -112,41 +116,120 @@ const installSnippets = [
   </section>
 
   <section class="mx-auto max-w-5xl px-6 py-12">
-    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
-      What's in the box
-    </h2>
+    <div class="mb-8 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        The 60-second pitch
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        Why operators are switching.
+      </h2>
+    </div>
+    <div class="grid gap-4 md:grid-cols-3">
+      {pitch.map((p) => <PitchCard heading={p.heading} body={p.body} />)}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <div class="mb-8 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        The interface
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        This is what your logbook should look like.
+      </h2>
+    </div>
+    <figure
+      class="overflow-hidden rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-1)]"
+    >
+      <img
+        src="/screenshots/damascus.png"
+        alt="Damascus desktop app — POTA activation at Caesar Creek State Park (US-1940), 11 QSOs logged on 40m CW, with live DX spots, POTA Activator panel, and station leaderboard visible."
+        loading="lazy"
+        class="block h-auto w-full"
+      />
+      <figcaption
+        class="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-4 py-2 text-center font-mono text-xs uppercase tracking-widest text-text-muted"
+      >
+        Real Damascus session · POTA activation at US-1940 · 40m CW
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <div class="mb-8 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        Capability
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        What's actually in the box.
+      </h2>
+    </div>
     <FeatureGrid columns={3}>
       {
         features.map((feature) => (
-          <FeatureCard title={feature.title} body={feature.body} />
+          <FeatureCard
+            title={feature.title}
+            body={feature.body}
+            iconKind={feature.iconKind}
+          />
         ))
       }
     </FeatureGrid>
   </section>
 
-  <section class="mx-auto max-w-3xl px-6 py-12">
-    <h2 class="mb-6 text-sm font-medium uppercase tracking-widest text-text-muted">
-      Install
-    </h2>
-    <div class="flex flex-col gap-4">
-      {
-        installSnippets.map((snippet) => (
-          <CodeBlock label={snippet.label}>{snippet.body}</CodeBlock>
-        ))
-      }
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <div class="mb-8 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        Platforms
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        Install on whatever you actually run.
+      </h2>
     </div>
+    <div class="grid gap-4 md:grid-cols-3">
+      <PlatformCard
+        platform="windows"
+        bullets={[
+          "Windows 10 / 11 (x64)",
+          "MSI installer",
+          "winget package (coming)",
+        ]}
+        snippetPrompt="PS>"
+        snippet="winget install QSOForge.Damascus"
+      />
+      <PlatformCard
+        platform="linux"
+        bullets={[
+          "Debian / Ubuntu (.deb)",
+          "Fedora / RHEL (.rpm)",
+          "Arch (AUR: damascus-bin)",
+          "Universal AppImage",
+        ]}
+        snippetPrompt="$"
+        snippet="sudo dpkg -i damascus_<version>_amd64.deb"
+      />
+      <PlatformCard
+        platform="macos"
+        status="planned"
+        bullets={[
+          "Apple Silicon + Intel",
+          "Notarized .dmg",
+          "Homebrew cask",
+        ]}
+        plannedNote={`PLANNED FOR Q3 2026
+GUI parity is shipping first; TUI is already usable via cargo.`}
+      />
+    </div>
+    <p class="mt-6 text-sm text-text-muted">
+      Looking for the binary downloads? See <a href="/damascus/download" class="text-accent">/damascus/download</a> for direct links, SHA256s, and sizes.
+    </p>
   </section>
 
-  <section class="mx-auto max-w-3xl px-6 py-16 text-center">
-    <h2 class="text-2xl font-semibold tracking-tight">Try it free for 30 days</h2>
-    <p class="mt-4 text-text-muted">
-      Damascus enters Evaluation mode on first launch with the full feature set
-      for 30 days. No signup. No email. No clicks. Open the app and start
-      logging.
-    </p>
-    <div class="mt-6 flex flex-wrap justify-center gap-3">
-      <DownloadButton variant="primary" />
-      <BuyButton variant="secondary" />
-    </div>
-  </section>
+  <CtaBand
+    heading="Try it free for 30 days."
+    body="Damascus enters Evaluation mode on first launch with the full feature set for 30 days. No signup. No email. No clicks. Open the app and start logging."
+  >
+    <DownloadButton variant="primary" />
+    <BuyButton variant="secondary" />
+  </CtaBand>
 </BaseLayout>

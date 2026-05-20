@@ -1,0 +1,89 @@
+---
+interface Props {
+  platform: "windows" | "linux" | "macos";
+  status?: "available" | "planned";
+  bullets: string[];
+  snippet?: string;
+  snippetPrompt?: string;
+  plannedNote?: string;
+}
+
+const {
+  platform,
+  status = "available",
+  bullets,
+  snippet,
+  snippetPrompt = "$",
+  plannedNote,
+} = Astro.props;
+
+const labels = {
+  windows: "Windows",
+  linux: "Linux",
+  macos: "macOS",
+};
+const isPlanned = status === "planned";
+---
+
+<div
+  class:list={[
+    "flex flex-col gap-4 rounded-lg border bg-[color:var(--color-surface-1)] p-6",
+    isPlanned
+      ? "border-[color:var(--color-border)] opacity-80"
+      : "border-[color:var(--color-border)]",
+  ]}
+>
+  <div class="flex items-center gap-3">
+    <span class="text-accent" aria-hidden="true">
+      {
+        platform === "windows" && (
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M0 2.5l8.3-1.2v8.3H0V2.5zm9.2-1.3L20 0v9.2H9.2V1.2zM0 10.8h8.3v8L0 17.5v-6.7zm9.2 0H20V20l-10.8-1.3v-7.9z" />
+          </svg>
+        )
+      }
+      {
+        platform === "linux" && (
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 0C5 0 5.83 5 5.83 5S3.33 6.67 3.33 10.83c0 2.5 1.67 3.34 1.67 5.84 0 .83-.83 1.66 0 2.5.83.83 10.83.83 11.66 0 .83-.84 0-1.67 0-2.5 0-2.5 1.67-3.34 1.67-5.84C18.33 6.67 15.83 5 15.83 5S15 0 10 0z" />
+          </svg>
+        )
+      }
+      {
+        platform === "macos" && (
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M14 10.7c0-2.3 1.83-3.5 2-3.5-1-1.5-2.67-1.67-3.33-1.67-1.33-.17-2.83.83-3.5.83s-1.83-.83-3-.83c-1.5 0-3 .83-3.83 2.33-1.67 2.83-.5 7 1.17 9.17.83 1.17 1.67 2.33 3 2.33 1.17 0 1.67-.83 3.17-.83s2 .83 3.17.83c1.33 0 2.17-1.17 3-2.33 1-1.33 1.33-2.67 1.33-2.67s-3-1.16-3-3.67zM11.83 3.83C12.5 3 13 2 12.83.83c-1 0-2.17.67-2.83 1.5s-1.17 2-1 3c1.17.17 2.17-.5 2.83-1.5z" />
+          </svg>
+        )
+      }
+    </span>
+    <h3 class="text-lg font-semibold text-text">{labels[platform]}</h3>
+    {
+      isPlanned && (
+        <span class="ml-auto rounded-full border border-[color:var(--color-border)] px-2 py-0.5 text-xs uppercase tracking-wide text-text-muted">
+          Planned
+        </span>
+      )
+    }
+  </div>
+  <ul class="flex flex-col gap-1.5 text-sm text-text-muted">
+    {bullets.map((b) => <li>· {b}</li>)}
+  </ul>
+  {
+    snippet && (
+      <div class="overflow-x-auto rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-3 py-2 font-mono text-xs text-text">
+        <span class="mr-2 text-accent">{snippetPrompt}</span>
+        <span>{snippet}</span>
+      </div>
+    )
+  }
+  {
+    plannedNote && (
+      <div class="rounded-md border border-dashed border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-3 py-3 font-mono text-xs leading-relaxed text-text-muted">
+        {plannedNote.split("\n").map((line) => (
+          <div>// {line}</div>
+        ))}
+      </div>
+    )
+  }
+</div>

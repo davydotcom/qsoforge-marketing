@@ -1,0 +1,86 @@
+---
+import type { FeatureIconKind } from "../lib/icons";
+
+interface Props {
+  kind: FeatureIconKind;
+}
+
+const { kind } = Astro.props;
+---
+
+{
+  kind === "keyboard" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <rect x="2" y="4" width="12" height="8" rx="1" />
+      <path d="M5 8h1M8 8h1M11 8h1" />
+    </svg>
+  )
+}
+{
+  kind === "list" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <path d="M3 4h10M3 8h10M3 12h6" />
+    </svg>
+  )
+}
+{
+  kind === "signal" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <path d="M8 1v6M8 1L5 4M8 1l3 3M2 9v5h12V9" />
+    </svg>
+  )
+}
+{
+  kind === "p2p" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <circle cx="3" cy="8" r="2" />
+      <circle cx="13" cy="8" r="2" />
+      <circle cx="8" cy="3" r="2" />
+      <circle cx="8" cy="13" r="2" />
+      <path d="M5 8h6M8 5v6" />
+    </svg>
+  )
+}
+{
+  kind === "pota" && (
+    <svg width="16" height="18" viewBox="0 0 18 18" fill="var(--color-accent)">
+      <rect x="8" y="13" width="2" height="4" />
+      <rect x="4" y="9" width="10" height="4" rx="1" />
+      <rect x="5" y="6" width="8" height="4" rx="1" />
+      <rect x="6" y="3" width="6" height="4" rx="1" />
+      <rect x="8" y="1" width="2" height="3" />
+    </svg>
+  )
+}
+{
+  kind === "rig" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <rect x="2" y="5" width="12" height="6" rx="1" />
+      <circle cx="5" cy="8" r="1" />
+      <circle cx="11" cy="8" r="1" fill="var(--color-accent)" />
+    </svg>
+  )
+}
+{
+  kind === "lotw" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <path d="M4 8l3 3 5-6" />
+      <circle cx="8" cy="8" r="6.5" />
+    </svg>
+  )
+}
+{
+  kind === "dx" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <circle cx="8" cy="8" r="6" />
+      <path d="M2 8h12M8 2v12M4 4l8 8M12 4l-8 8" />
+    </svg>
+  )
+}
+{
+  kind === "waveform" && (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--color-accent)" stroke-width="2">
+      <path d="M2 8h2l2-5 4 10 2-5h2" />
+    </svg>
+  )
+}
