@@ -11,7 +11,7 @@ Marketing site for **QSO Forge, LLC** — engineering-quality amateur radio soft
 
 ## Local development
 
-Requires Node 20 (`.nvmrc`).
+Requires Node 22 LTS (`.nvmrc`). Astro 6 dropped Node 20 support.
 
 ```sh
 npm install

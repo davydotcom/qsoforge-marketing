@@ -117,7 +117,7 @@ Execute these in order. Each step names every file or directory to create.
 
 1. **Initialize the Node/Astro project root.**
    - Create `package.json` with `"type": "module"`, scripts `dev`, `build`, `preview`, `astro`, and dependencies: `astro ^6`, `@astrojs/sitemap ^3.5`, `@astrojs/mdx ^5`, `tailwindcss ^4`, `@tailwindcss/postcss ^4`. Dev: `typescript ^5`.
-   - Create `.nvmrc` pinning Node 20 LTS.
+   - Create `.nvmrc` pinning Node 22 LTS (Astro 6 dropped Node 20 support; 22 is current LTS).
    - Create `.gitignore` covering `node_modules/`, `dist/`, `.astro/`, `.env`, `.env.*` (except `.env.example`), `.wrangler/`, `.DS_Store`. (The Hero-managed block already lives in this file; append the Node/Astro block above it without touching the managed block.)
    - Create `.env.example` with placeholders for `PUBLIC_BUTTONDOWN_ENDPOINT`, `PUBLIC_CF_ANALYTICS_TOKEN`, `PUBLIC_LS_DAMASCUS_CHECKOUT_URL`, `PUBLIC_DAMASCUS_PRICE_USD` (default `25`), and `PUBLIC_RELEASES_MANIFEST_URL` (default `https://releases.qsoforge.com/damascus/latest.json`).
 
