@@ -1,6 +1,3 @@
-name = "quiet-math-792e"
-# Cloudflare Pages project slug (auto-generated at project creation; immutable).
-# This is the project ID used by `wrangler pages deploy`. The public-facing
-# domain is qsoforge.com via the project's Custom Domains binding.
+name = "qso-marketing"
 compatibility_date = "2026-05-19"
 pages_build_output_dir = "./dist"

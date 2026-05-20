@@ -36,4 +36,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=quiet-math-792e --branch=${{ github.ref_name }}
+          command: pages deploy dist --project-name=qso-marketing --branch=${{ github.ref_name }}
