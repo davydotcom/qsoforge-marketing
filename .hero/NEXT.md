@@ -1,3 +1,9 @@
+<!-- hero:managed-start v=dev -->
+## Project snapshot
+
+Project shape: see [SNAPSHOT.md](.hero/SNAPSHOT.md).
+<!-- hero:managed-end -->
+
 ---
 updated: 2026-05-18T23:07:24Z
 branch: 

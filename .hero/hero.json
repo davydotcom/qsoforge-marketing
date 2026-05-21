@@ -1,5 +1,6 @@
 {
   "folder": ".hero",
+  "peer_id": "5134609b-18ba-44df-b0fc-ab91b89d8b25",
   "team": {
     "require_review": false,
     "stale_days": 14,
