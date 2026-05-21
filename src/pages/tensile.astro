@@ -1,36 +1,130 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import ComingSoonForm from "../components/ComingSoonForm.astro";
+import PitchCard from "../components/PitchCard.astro";
 import MilestoneBadge from "../components/MilestoneBadge.astro";
+import CtaBand from "../components/CtaBand.astro";
+
+const LIVE_URL = "https://tensile.qsoforge.com";
+
+const pitch = [
+  {
+    heading: "Search by geography, not by callsign.",
+    body: "Map-first directory with bounding-box and radius search. Find every repeater within reach of your grid — not just the ones whose calls you already know.",
+  },
+  {
+    heading: "Radio-horizon coverage, per repeater.",
+    body: "Every repeater detail page renders a radio-horizon estimate so you can judge whether you're realistically in the footprint before you key up.",
+  },
+  {
+    heading: "Open data, in and out.",
+    body: "Built on OpenRepeaterMap, FCC ULS enrichment, and frequency-coordinator CSVs. Open formats. Open lineage. No proprietary lock-in.",
+  },
+];
 ---
 
 <BaseLayout
-  title="Tensile — a modern public repeater directory from QSO Forge"
-  description="Tensile is a modern repeater directory — fast, geo-aware, and built on open data. Searchable from desktop, browser, or your HT. Coming soon from QSO Forge."
+  title="Tensile — modern public repeater directory from QSO Forge"
+  description="Tensile is a modern public repeater directory — fast, geo-aware, built on open data. Live now at tensile.qsoforge.com."
   path="/tensile"
   ogImage="/og/tensile.png"
 >
-  <Hero eyebrow="● Coming soon" eyebrowVariant="accent">
+  <Hero
+    eyebrow="● Live now · tensile.qsoforge.com"
+    eyebrowVariant="success"
+    variant="wordmark"
+    subtitle="A modern public repeater directory — fast, geo-aware, and built on open data. Searchable from your desktop logger, from any browser, or from your HT via QR."
+  >
     <Fragment slot="title">
-      Tensile. The repeater directory, <span class="text-accent">rebuilt</span>.
+      <span class="inline-flex items-center gap-4 align-middle">
+        <img
+          src="/tensile-mark.svg"
+          alt=""
+          width="80"
+          height="80"
+          class="h-12 w-12 shrink-0 md:h-20 md:w-20"
+        />
+        <span>TENSILE</span>
+      </span>
     </Fragment>
+    <a
+      slot="cta"
+      href={LIVE_URL}
+      class="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-[color:var(--color-surface-0)] no-underline transition-colors hover:bg-[color:var(--color-accent)]/90"
+    >
+      <span>Open Tensile</span>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 3h6v6M11 3l-8 8" />
+      </svg>
+    </a>
   </Hero>
 
-  <section class="mx-auto max-w-3xl px-6 pb-16">
-    <p class="text-lg leading-relaxed text-text-muted">
-      Tensile is a modern repeater directory — fast, geo-aware, and built on
-      open data. Searchable from your desktop logger, from any browser, or
-      from your HT via QR. Crowdsourced and built to keep up with how the
-      hobby actually changes.
-    </p>
-
-    <div class="mt-8">
-      <ComingSoonForm productName="Tensile" />
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <div class="mb-8 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        What's live today
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        The public directory, M0.
+      </h2>
     </div>
-
-    <div class="mt-10">
-      <MilestoneBadge milestone="M0" label="Field-data ingestion" when="Q4 2026" />
+    <div class="grid gap-4 md:grid-cols-3">
+      {pitch.map((p) => <PitchCard heading={p.heading} body={p.body} />)}
     </div>
   </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <div class="mb-8 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        Status
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        Where Tensile is, and where it's going.
+      </h2>
+      <p class="mt-3 text-text-muted">
+        M0 is live and read-only. Operator accounts, presets, and CHIRP export
+        land in M1. Crowdsourcing, trust, and monetization follow in M2.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <MilestoneBadge milestone="M0" label="Public directory" when="Live" />
+      <MilestoneBadge milestone="M1" label="Operator core · presets · CHIRP" when="Next" />
+      <MilestoneBadge milestone="M2" label="Trust · crowdsourcing" when="Later" />
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Find a repeater within reach."
+    body="The directory is live, free, and open. Search by grid, by location, or by callsign."
+  >
+    <a
+      href={LIVE_URL}
+      class="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--color-accent)] px-5 py-3 text-base font-medium text-[color:var(--color-surface-0)] no-underline transition-colors hover:bg-[color:var(--color-accent)]/90"
+    >
+      <span>Open tensile.qsoforge.com</span>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 3h6v6M11 3l-8 8" />
+      </svg>
+    </a>
+  </CtaBand>
 </BaseLayout>

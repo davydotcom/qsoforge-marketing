@@ -1,11 +1,12 @@
 ---
 title: QSO Forge marketing website (v1)
 type: feature
-status: planning
+status: delivering
 priority: high
 tags: [marketing, brand, astro, greenfield, commerce]
 relates-to:
   - damascus-fulfillment-pipeline
+  - tensile-live-link
 created: 2026-05-18
 ---
 

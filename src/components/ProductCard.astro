@@ -55,10 +55,22 @@ const resolvedCta = ctaLabel ?? (isAvailable ? `View ${name}` : "Notify me");
       }
       {
         iconKey === "tensile" && (
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--color-accent)" stroke-width="1.6">
-            <circle cx="10" cy="10" r="3" />
-            <circle cx="10" cy="10" r="6.5" />
-            <path d="M10 3.5v-1M10 17.5v-1M3.5 10h-1M17.5 10h-1" />
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 64 64"
+            fill="none"
+            stroke={isAvailable ? "var(--color-accent-alt)" : "var(--color-accent)"}
+          >
+            <path
+              d="M32 10 L56 52 L8 52 Z"
+              stroke-width="3.5"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M32 26 L46 48 L18 48 Z"
+              fill={isAvailable ? "var(--color-accent-alt)" : "var(--color-accent)"}
+            />
           </svg>
         )
       }

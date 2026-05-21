@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tensile">
+  <rect width="64" height="64" rx="12" fill="#0A0A0A"/>
+  <path d="M32 10 L56 52 L8 52 Z"
+        fill="none" stroke="#FF8000" stroke-width="3.5"
+        stroke-linejoin="round"/>
+  <path d="M32 26 L46 48 L18 48 Z"
+        fill="#FF8000"/>
+</svg>
