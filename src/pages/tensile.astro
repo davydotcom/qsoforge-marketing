@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import PitchCard from "../components/PitchCard.astro";
-import MilestoneBadge from "../components/MilestoneBadge.astro";
 import CtaBand from "../components/CtaBand.astro";
 
 const LIVE_URL = "https://tensile.qsoforge.com";
@@ -33,7 +32,7 @@ const pitch = [
     eyebrow="● Live now · tensile.qsoforge.com"
     eyebrowVariant="success"
     variant="wordmark"
-    subtitle="A modern public repeater directory — fast, geo-aware, and built on open data. Searchable from your desktop logger, from any browser, or from your HT via QR."
+    subtitle="A modern public repeater directory — fast, geo-aware, and built on open data. Searchable from any browser, anywhere."
   >
     <Fragment slot="title">
       <span class="inline-flex items-center gap-4 align-middle">
@@ -75,31 +74,11 @@ const pitch = [
         What's live today
       </p>
       <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-        The public directory, M0.
+        The public directory.
       </h2>
     </div>
     <div class="grid gap-4 md:grid-cols-3">
       {pitch.map((p) => <PitchCard heading={p.heading} body={p.body} />)}
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-5xl px-6 py-12">
-    <div class="mb-8 max-w-2xl">
-      <p class="text-xs font-medium uppercase tracking-widest text-accent">
-        Status
-      </p>
-      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-        Where Tensile is, and where it's going.
-      </h2>
-      <p class="mt-3 text-text-muted">
-        M0 is live and read-only. Operator accounts, presets, and CHIRP export
-        land in M1. Crowdsourcing, trust, and monetization follow in M2.
-      </p>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <MilestoneBadge milestone="M0" label="Public directory" when="Live" />
-      <MilestoneBadge milestone="M1" label="Operator core · presets · CHIRP" when="Next" />
-      <MilestoneBadge milestone="M2" label="Trust · crowdsourcing" when="Later" />
     </div>
   </section>
 
