@@ -111,7 +111,7 @@ const features = [
     <div class="flex flex-wrap gap-3">
       <PlatformBadge platform="windows" status="available" />
       <PlatformBadge platform="linux" status="available" />
-      <PlatformBadge platform="macos" status="planned" />
+      <PlatformBadge platform="macos" status="available" />
     </div>
   </section>
 
@@ -230,14 +230,11 @@ const features = [
       />
       <PlatformCard
         platform="macos"
-        status="planned"
         bullets={[
           "Apple Silicon + Intel",
           "Notarized .dmg",
-          "Homebrew cask",
+          "Homebrew cask (coming)",
         ]}
-        plannedNote={`PLANNED FOR Q3 2026
-GUI parity is shipping first; TUI is already usable via cargo.`}
       />
     </div>
     <p class="mt-6 text-sm text-text-muted">

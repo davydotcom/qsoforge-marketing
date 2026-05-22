@@ -82,6 +82,34 @@ const pitch = [
     </div>
   </section>
 
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <div class="mb-8 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-accent">
+        Coming next
+      </p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        Tensile, from your tracker.
+      </h2>
+      <p class="mt-3 text-text-muted">
+        An APRS gateway is going in. Message
+        <code class="rounded bg-[color:var(--color-surface-2)] px-1.5 py-0.5 font-mono text-sm text-text">TENSL</code>
+        from your tracker and Tensile replies with the closest repeaters
+        that actually reach your position — terrain-aware coverage,
+        SSID-aware ranking, packed into standard APRS message lines.
+      </p>
+    </div>
+    <div class="grid gap-4 md:grid-cols-2">
+      <PitchCard
+        heading="Two closest reachable repeaters — straight to your tracker."
+        body="From a 5W HT, send TENSL a message with an optional band/mode filter. The reply lands on your tracker as compact lines: callsign, frequency, offset, tone, distance, mode. Coverage is filtered by terrain and the rank adjusts for your SSID — an HT walking gets a different answer than a mobile."
+      />
+      <PitchCard
+        heading="Emergency beacons reach the right owners."
+        body="When an APRS-IS station triggers an EMERGENCY beacon, Tensile auto-emails the owners of every claimed repeater within 100 miles. Verified emails only, deduplicated per sender, capped per event — so the people closest to the call hear about it without flooding inboxes."
+      />
+    </div>
+  </section>
+
   <CtaBand
     heading="Find a repeater within reach."
     body="The directory is live, free, and open. Search by grid, by location, or by callsign."
